@@ -18,13 +18,11 @@ public class TicTacToe {
 
     private int generation = 0;
 
-
     public TicTacToe(String txtFile) {
         this.txtFile = txtFile;
         this.board = new char[height][width];
         initializeBoard();
     }
-
 
     public void readFile() throws IOException {
 
@@ -55,9 +53,10 @@ public class TicTacToe {
 
                         default:
                             System.out.println("Invalid character input");
-                    }  row++;
+                    }
+                    row++;
 
-                } 
+                }
 
             }
 
@@ -74,7 +73,7 @@ public class TicTacToe {
 
     // Print current board state
     public void printBoard() {
-        for (int i = 0 ; i < 3 ; i++){
+        for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
                 System.out.println(board[i][j]);
             }
@@ -83,7 +82,7 @@ public class TicTacToe {
 
     //Initializing of the board
     public void initializeBoard() {
-        for (int i = 0 ; i < 3 ; i++){
+        for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
                 board[i][j] = EMPTY;
             }
@@ -91,12 +90,30 @@ public class TicTacToe {
 
     }
 
-    public boolean checkWin (char player) {
-        
-        return true;
-    }
+    public boolean checkWin(char player) {
+        // Checking of rows and columns for win
+        for (int i = 0; i < 3; i++) {
+            if (board[i][0] == player && board[i][1] == player && board[i][2] == player) {
+                return true;
+            }
+        }
+        for (int j = 0; j < 3; j++) {
+            if (board[0][j] == player && board[1][j] == player && board[2][j] == player) {
+                return true;
+            }
+        }
+        // Checking of diagonals
+        if (board[0][0] == player && board[1][1] == player && board[2][2] == player) {
+            return true;
+        }
+        if (board[2][0] == player && board[1][1] == player && board[0][2] == player) {
+            return true;
+        } else {
+            return false;
+        }
 
+    }   
     
 
-    
+
 }
